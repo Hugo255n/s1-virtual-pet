@@ -22,14 +22,8 @@ public class VirtualPet {
         } else {
             hunger = 0;
         }
-        face.setMessage("Yum, thanks");
-        face.setImage("normal");
     }
 
-    public void exercise() {
-        hunger = hunger + 3;
-        face.setMessage("1, 2, 3, jump.  Whew.");
-        face.setImage("tired");
 
         if (tiredness < 4) {
             face.setMessage("estoy ecstatic");
@@ -41,5 +35,4 @@ public class VirtualPet {
         hunger = hunger + 1;
         face.setImage("asleep");
     }
-
 } // end Virtual Pet
