@@ -39,12 +39,34 @@ public class Runner {
             }
         }
 
-        wait(2000);
+        wait(2500);
         if (p1.getWakeUpCount() == 2) {
             p1.say("It's already 8:20");
         } else {
+            p1.emotion("relieved");
             p1.say("Phew. It's still 7:30");
+            wait(2000);
         }
+
+        JOptionPane.showMessageDialog(null, "From now on, you will be in the perspective of your pet.");
+
+        p1.say("We have to eatbreakfast");
+        wait(2000);
+
+        int eatBreakfastCheck = JOptionPane.showConfirmDialog(
+                null,
+                "Will you eat breakfast? You may be late to school.",
+                "Question",
+                JOptionPane.YES_NO_OPTION);
+                wait(500);
+        p1.eatBreakfast(eatBreakfastCheck);
+
+        wait(5000);
+
+        p1.emotion("happy");
+        p1.say("Time to head for school!");
+
+        
     }
 
     public static void main(String[] args) {
