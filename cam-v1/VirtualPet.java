@@ -77,34 +77,98 @@ public class VirtualPet {
         }
     }
 
+    public void eatLunch(int answer) {
+        if (answer == 0) {
+            face.setImage("eating");
+            face.setMessage("Nom Nom, What a good lunch!");
+            this.hunger -= 20;
+        } else {
+            this.hunger += 30;
+            face.setImage("sad");
+            face.setMessage("I'm feeling really hungry now, but I don't feel like eating right now.");
+        }
+    }
+
     public void takeTest() {
         int score = 0;
 
-        Object[] options = { "5",
+        Object[] options1 = { "5",
                 "6" };
-        int n = JOptionPane.showOptionDialog(null,
+        int n1 = JOptionPane.showOptionDialog(null,
                 "What is 2 + 3?",
                 "Problem 1",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
                 null,
-                options,
-                options[0]);
+                options1,
+                options1[0]);
+        if (n1 == 0) {
+            face.setMessage("Correct!");
+            score++;
+        } else {
+            face.setMessage("Incorrect");
+        }
 
+        Object[] options2 = { "1",
+                "-1" };
+        int n2 = JOptionPane.showOptionDialog(null,
+                "What is 7 - 8?",
+                "Problem 1",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options2,
+                options2[0]);
+        if (n2 == 1) {
+            face.setMessage("Correct!");
+            score++;
+        } else {
+            face.setMessage("Incorrect");
+        }
+        // score calculate
+        if (score == 0) {
+            happiness -= 20;
+            face.setImage("sad");
+            face.setMessage("Noooo. My parents are going to be so mad.");
+        } else if (score == 1) {
+            happiness += 10;
+            face.setImage("happy");
+            face.setMessage("I don't think I did that bad.");
+        } else {
+            happiness += 40;
+            face.setImage("ecstatic");
+            face.setMessage("Yaaaaay! Full Score!");
+        }
+    }
+
+    public void lookForFriend(int answer) {
+        if (answer == 0) {
+            face.setImage("ecstatic");
+            face.setMessage("Yaaay found my friend! 'Hey friend, we should walk together!'");
+            happiness += 30;
+        } else {
+            face.setImage("sad");
+            face.setMessage("I don't feel like talking to my friend anyway.");
+            happiness -= 35;
+        }
     }
 
     // ending check method
     public void checkEnding() {
         if (hunger > hungerGate) {
             face.setImage("skeleton");
-        } else if (happiness < angryGate) {
+            face.setMessage("You died from hunger, don't forget to eat your meals.");
+        } else if (this.happiness < angryGate) {
             face.setImage("angry");
-        } else if (happiness < sadGate) {
+            face.setMessage("Don't be so angry, there's always tomorrow.");
+        } else if (this.happiness < sadGate) {
             face.setImage("sad");
-        } else if (happiness < happyGate) {
-            face.setImage("happy");
+            face.setMessage("You're a bit sad, but you can get over it.");
+        } else if (this.happiness < happyGate) {
+            face.setImage("That was such a boring day.");
         } else {
             face.setImage("ecstatic");
+            face.setImage("Today was the happiest day of you life.");
         }
     }
 
